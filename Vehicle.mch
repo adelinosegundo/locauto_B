@@ -1,4 +1,4 @@
-MACHINE           Vehicles
+MACHINE           Vehicle
 
 INCLUDES		  Price
 
@@ -14,22 +14,30 @@ INITIALIZATION    vehicles := {}
 
 OPERATIONS
 
-add_vehicle(gg, pp)=
-  PRE gg : VEHICLES_ST & gg /: vehicles & pp : NAT1
-  THEN vehicles := vehicles \/ {gg};set_price(gg, pp)
+rr <-- add_vehicle(vv, pp)=
+  PRE vv : VEHICLES_ST & pp : NAT1
+  THEN
+    IF vv /: vehicles
+    THEN vehicles := vehicles \/ {vv}||set_price(vv, pp)||rr:=true
+    ELSE rr:=false
+    END
   END;
 
-remove_vehicle(gg)=
-  PRE gg : vehicles
-  THEN vehicles := vehicles - {gg}||remove_price(gg)
-  END;
-
-pp <-- query_vehicle(gg) =
+rr <-- remove_vehicle(vv)=
   PRE 1=1
   THEN
-    IF gg:vehicles
-    THEN pp := true
-    ELSE pp := false
+    IF vv : vehicles
+    THEN vehicles := vehicles - {vv}||remove_price(vv)||rr:=true
+    ELSE rr:=false
+    END
+  END;
+
+qq <-- query_vehicle(vv) =
+  PRE 1=1
+  THEN
+    IF vv:vehicles
+    THEN qq := true
+    ELSE qq := false
     END
   END
 

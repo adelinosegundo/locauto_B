@@ -4,22 +4,36 @@ SEES Boolean
 
 INCLUDES ClientsCTX
 
+VARIABLES clients
+
+INVARIANT clients <: CLIENTS_ST
+
+INITIALISATION clients := {}
+
 OPERATIONS
 
-add_client(cc)=
-  PRE cc /: CLIENTS
-  THEN CLIENTS := CLIENTS \/ {cc}
+rr <-- add_client(cc)=
+  PRE cc : CLIENTS_ST
+  THEN
+    IF cc /: clients
+    THEN clients := clients \/ {cc}||rr:=true
+    ELSE rr:=false
+    END
   END;
 
-remove_client(cc)=
-  PRE cc : CLIENTS
-  THEN CLIENTS := CLIENTS - {cc}
+rr <-- remove_client(cc)=
+  PRE 1=1
+  THEN
+    IF cc : clients
+    THEN clients := clients - {cc}||rr:=true
+    ELSE rr:=false
+    END
   END;
 
 pp <-- query_client(cc)=
   PRE 1=1
   THEN
-    IF cc : CLIENTS
+    IF cc : clients
     THEN pp := true
     ELSE pp := false
     END

@@ -10,18 +10,18 @@ INITIALISATION    price := {}
 
 OPERATIONS
 
-set_price(gg,pp) =
-  PRE gg : VEHICLES_ST & pp : NAT1
-  THEN price(gg) := pp
+set_price(vv,pp) =
+  PRE vv : VEHICLES_ST & pp : NAT1
+  THEN price(vv) := pp
   END;
 
-remove_price(gg) =
-  PRE gg : dom(price)
-  THEN price := {gg} <<| price
+remove_price(vv) =
+  PRE vv : dom(price)
+  THEN price := {vv} <<| price
   END;
 
 
-pp <-- query_price(gg) =
-  PRE gg : VEHICLES_ST THEN pp := price(gg) END
+pp <-- query_price(vv) =
+  PRE vv : VEHICLES_ST THEN pp := price(vv) END
 
 END
