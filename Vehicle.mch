@@ -1,31 +1,36 @@
 MACHINE           Vehicles
 
+INCLUDES		  Price
+
+USES              VehiclesCTX
+
 SEES              Boolean
 
-INCLUDES          Price, VehiclesCTX
+VARIABLES         vehicles
 
-INVARIANT         price : VEHICLES >-> NAT1
+INVARIANT         vehicles <: VEHICLES_ST
 
-INITIALISATION    price :: VEHICLES * {1}
+INITIALIZATION    vehicles := {}
 
 OPERATIONS
 
 add_vehicle(gg, pp)=
-  PRE gg /: VEHICLES && pp : NAT1
-  THEN VEHICLES := VEHICLES \/ {gg};set_price(gg, pp)
+  PRE gg : VEHICLES_ST & gg /: vehicles & pp : NAT1
+  THEN vehicles := vehicles \/ {gg};set_price(gg, pp)
   END;
 
 remove_vehicle(gg)=
-  PRE gg /: VEHICLES && gg:dom(price)
-  THEN VEHICLES := VEHICLES - {gg};remove_price(gg, pp)
+  PRE gg : vehicles
+  THEN vehicles := vehicles - {gg}||remove_price(gg)
   END;
 
 pp <-- query_vehicle(gg) =
-  PRE true
+  PRE 1=1
   THEN
-    IF gg:VEHICLES
+    IF gg:vehicles
     THEN pp := true
     ELSE pp := false
     END
+  END
 
 END
