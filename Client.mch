@@ -1,8 +1,6 @@
 MACHINE Client
 
-SEES Boolean
-
-INCLUDES ClientsCTX
+SEES Boolean, ClientsCTX
 
 VARIABLES clients
 

@@ -1,10 +1,6 @@
 MACHINE           Vehicle
 
-INCLUDES		  Price
-
-USES              VehiclesCTX
-
-SEES              Boolean
+SEES              Boolean, VehiclesCTX, Category
 
 VARIABLES         vehicles
 
@@ -14,11 +10,11 @@ INITIALIZATION    vehicles := {}
 
 OPERATIONS
 
-rr <-- add_vehicle(vv, pp)=
-  PRE vv : VEHICLES_ST & pp : NAT1
+rr <-- add_vehicle(vv)=
+  PRE vv : VEHICLES_ST & vv:dom(category)
   THEN
     IF vv /: vehicles
-    THEN vehicles := vehicles \/ {vv}||set_price(vv, pp)||rr:=true
+    THEN vehicles := vehicles \/ {vv}||rr:=true
     ELSE rr:=false
     END
   END;
@@ -27,7 +23,7 @@ rr <-- remove_vehicle(vv)=
   PRE 1=1
   THEN
     IF vv : vehicles
-    THEN vehicles := vehicles - {vv}||remove_price(vv)||rr:=true
+    THEN vehicles := vehicles - {vv}||rr:=true
     ELSE rr:=false
     END
   END;

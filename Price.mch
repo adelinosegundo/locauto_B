@@ -1,27 +1,21 @@
 MACHINE           Price
 
-SEES              VehiclesCTX
+SEES              CategoriesCTX
 
-VARIABLES         price
+VARIABLES         price, delay_price
 
-INVARIANT         price : VEHICLES_ST +-> NAT1
+INVARIANT         price : CATEGORIES_ST +-> NAT1 & delay_price : CATEGORIES_ST +-> NAT1
 
-INITIALISATION    price := {}
+INITIALISATION    price, delay_price := {}, {}
 
 OPERATIONS
 
-set_price(vv,pp) =
-  PRE vv : VEHICLES_ST & pp : NAT1
-  THEN price(vv) := pp
+set_price(cc,pp,dly) =
+  PRE cc : CATEGORIES_ST & pp : NAT1 & dly:NAT1
+  THEN price(cc) := pp||delay_price(cc):=dly
   END;
 
-remove_price(vv) =
-  PRE vv : dom(price)
-  THEN price := {vv} <<| price
-  END;
-
-
-pp <-- query_price(vv) =
-  PRE vv : VEHICLES_ST THEN pp := price(vv) END
+pp <-- query_price(cc) =
+  PRE cc : CATEGORIES_ST THEN pp := price(cc) END
 
 END

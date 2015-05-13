@@ -1,6 +1,6 @@
 MACHINE           Rent
 
-INCLUDES          Client, Vehicle
+USES          Client, Vehicle
 
 SEES              Boolean
 
