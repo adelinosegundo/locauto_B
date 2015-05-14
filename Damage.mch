@@ -1,18 +1,28 @@
 MACHINE           Damage
 
-SEES              DamagesCTX
+SEES              DamagesCTX, VehiclesCTX, Boolean
 
-VARIABLES         damage_price
+VARIABLES         damage_price, damages
 
-INVARIANT         damage_price : DAMAGES_ST +-> NAT
+INVARIANT         damage_price : DAMAGES_ST +-> NAT & damages : VEHICLES_ST +-> DAMAGES_ST
 
-INITIALIZATION    damage_price := {no_damage|->0}
+INITIALIZATION    damage_price, damages := {no_damage|->0}, {}
 
 OPERATIONS
 
 set_damage_price(dd, pp)=
   PRE dd : DAMAGES_ST & pp:NAT
   THEN damage_price(dd) := pp
+  END;
+
+apply_damage(dd, cc)=
+  PRE dd : DAMAGES_ST & cc : VEHICLES_ST
+  THEN damages(cc) := dd
+  END;
+
+qq <-- query_damage_penalty(cc)=
+  PRE cc : VEHICLES_ST
+  THEN qq := damage_price(damages(cc)) 
   END;
 
 qq, rr <-- query_damage_price(dd) =

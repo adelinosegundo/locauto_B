@@ -1,42 +1,26 @@
 MACHINE           Penalty
 
-SEES              Boolean, VehiclesCTX
+SEES              Damage, Price, Time, Rent
 
-SETS              CATEGORY_ST={car, motocycle, lux_car}
+VARIABLES         total_price
 
-VARIABLES         category
+INVARIANT         total_price : NAT
 
-INVARIANT         category : VEHICLES_ST >+> CATEGORY_ST
-
-INITIALIZATION    category := {}
+INITIALIZATION    total_price := 0
 
 OPERATIONS
 
-rr <-- set_category(vv, cc)=
-  PRE vv : VEHICLES_ST & cc:CATEGORY_ST
-  THEN
-    IF vv /: dom(category)
-    THEN category(vv) := cc||rr:=true
-    ELSE rr:=false
-    END
-  END;
-
-rr <-- change_category(vv, cc)=
-  PRE vv : VEHICLES_ST & cc:CATEGORY_ST
-  THEN
-    IF vv:dom(category) & category(vv)/=cc
-    THEN category(vv) := cc || rr:=true
-    ELSE rr:=false
-    END
-  END;
-
-qq, rr <-- query_category(vv) =
+qq, rr <-- query_penalty(vv) =
   PRE 1=1
   THEN
-    IF vv:dom(category)
-    THEN qq := category(vv) || rr:= true
-    ELSE qq :: CATEGORY_ST || rr:= false
+    IF vv:ran(rents)
+    THEN qq := (query_damage_price() + query_delay_price() + query_price(category(vv))) || rr:= true
+    ELSE qq :: NAT || rr:= false
     END
   END
 
 END
+
+criar uma relaçao de veículo com damage pra poder descobrir o damage do veículo (inicializa o veículo com no_damage)
+criar uma operação apply_damage para aplicar dano a um veículo
+criar uma operação query_delay_price(cc) para descobrir o valor do delay pra uma categoria
