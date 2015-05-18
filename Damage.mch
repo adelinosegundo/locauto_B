@@ -4,9 +4,9 @@ SEES              DamagesCTX, VehiclesCTX, Boolean
 
 VARIABLES         damage_price, damages
 
-INVARIANT         damage_price : DAMAGES_ST +-> NAT & damages : VEHICLES_ST +-> DAMAGES_ST
+INVARIANT         damage_price : DAMAGES_ST +-> NAT & damages : VEHICLES_ST --> DAMAGES_ST
 
-INITIALIZATION    damage_price, damages := {no_damage|->0}, {}
+INITIALIZATION    damage_price, damages := {no_damage|->0}, VEHICLES_ST * {no_damage}
 
 OPERATIONS
 
@@ -18,6 +18,15 @@ set_damage_price(dd, pp)=
 apply_damage(dd, cc)=
   PRE dd : DAMAGES_ST & cc : VEHICLES_ST
   THEN damages(cc) := dd
+  END;
+
+rr <-- fix_damage(cc)
+  PRE 1=1 
+  THEN 
+    IF cc : dom(damages)
+    THEN damages(cc) := no_damage || rr := true
+    ELSE rr := false
+    END
   END;
 
 qq <-- query_damage_penalty(cc)=
