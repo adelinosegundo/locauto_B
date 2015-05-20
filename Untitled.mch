@@ -1,8 +1,10 @@
-MACHINE           Rent
+MACHINE Rent
 
-USES              Client, Vehicle, Penalty
+EXTENDS           Time, Penalty
 
-SEES              Boolean, Category, Price, Time
+USES              Client, Vehicle
+
+SEES              Boolean, Category, Price, ClientsCTX
 
 VARIABLES         rents, return_date
 
@@ -22,10 +24,10 @@ rr <-- rent(cc, vv, rd)=
   END;
 
 rr <-- return(cc)=
-  PRE 1=1
+  PRE cc:CLIENTS_ST
   THEN
     IF cc : dom(rents)
-    THEN rents := {cc} <<| rents || return_date:= {rents(cc)} <<| return_date || apply_penalty(cc, query_damage_penalty(rents(cc)),  penalty_by_delay(rents(cc))) || rr:=true
+    THEN rr := apply_penalty(cc, 0,  0)
     ELSE rr:=false
     END
   END;

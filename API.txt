@@ -1,0 +1,45 @@
+locauto(
+  rent[client, vehicle](
+    rr <-- rent(cc, vv, rd)
+    rr <-- return(cc)
+    qq <-- query_rents(cc, vv)
+    qq <-- query_rented(vv)
+    qq <-- query_renter(cc)
+  )
+
+  vehicle[category](
+    rr <-- add_vehicle(vv)
+    rr <-- remove_vehicle(vv)
+    qq <-- query_vehicle(vv)
+  )
+
+  category[price](
+    set_category(vv, cc)
+    qq, rr <-- query_category(vv)
+  )
+
+  price(
+    set_damage_price(dd, pp)
+    qq <-- query_damage_penalty(vv)
+    qq, rr <-- query_damage_price(dd)
+    set_price(cc,pp,dly)
+    pp <-- query_price(cc)
+  )
+
+  damage(
+    apply_damage(dd, vv)
+    rr <-- fix_damage(vv)
+  )
+
+  time(
+    pass_time
+    qq <-- query_time
+    qq <-- query_delay(tt)
+  )
+
+  client(
+    rr <-- add_client(cc)
+    rr <-- remove_client(cc)
+    pp <-- query_client(cc)
+  )
+)

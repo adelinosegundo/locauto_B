@@ -2,44 +2,25 @@ MACHINE           Damage
 
 SEES              DamagesCTX, VehiclesCTX, Boolean
 
-VARIABLES         damage_price, damages
+VARIABLES         damages
 
-INVARIANT         damage_price : DAMAGES_ST +-> NAT & damages : VEHICLES_ST --> DAMAGES_ST
+INVARIANT         damages : VEHICLES_ST --> DAMAGES_ST
 
-INITIALIZATION    damage_price, damages := {no_damage|->0}, VEHICLES_ST * {no_damage}
+INITIALIZATION    damages := VEHICLES_ST * {no_damage}
 
 OPERATIONS
 
-set_damage_price(dd, pp)=
-  PRE dd : DAMAGES_ST & pp:NAT
-  THEN damage_price(dd) := pp
+apply_damage(dd, vv)=
+  PRE dd : DAMAGES_ST-{no_damage} & vv : VEHICLES_ST
+  THEN damages(vv) := dd
   END;
 
-apply_damage(dd, cc)=
-  PRE dd : DAMAGES_ST & cc : VEHICLES_ST
-  THEN damages(cc) := dd
-  END;
-
-rr <-- fix_damage(cc)
-  PRE 1=1 
-  THEN 
-    IF cc : dom(damages)
-    THEN damages(cc) := no_damage || rr := true
-    ELSE rr := false
-    END
-  END;
-
-qq <-- query_damage_penalty(cc)=
-  PRE cc : VEHICLES_ST
-  THEN qq := damage_price(damages(cc)) 
-  END;
-
-qq, rr <-- query_damage_price(dd) =
+rr <-- fix_damage(vv)=
   PRE 1=1
   THEN
-    IF dd:dom(damage_price)
-    THEN qq := damage_price(dd) || rr:= true
-    ELSE qq :: NAT || rr:= false
+    IF damages(vv) /= no_damage
+    THEN damages(vv) := no_damage || rr := true
+    ELSE rr := false
     END
   END
 

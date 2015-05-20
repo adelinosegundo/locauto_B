@@ -1,24 +1,29 @@
 MACHINE           Penalty
 
-SEES              Damage, Price, Time, Rent
+USES              Client
 
-VARIABLES         total_price
+SEES              Boolean
 
-INVARIANT         total_price : NAT
+VARIABLES         penalty
 
-INITIALIZATION    total_price := 0
+INVARIANT         penalty : clients +-> NAT
+
+INITIALIZATION    penalty := clients*{0}
 
 OPERATIONS
 
-qq, rr <-- query_penalty(vv) =
-  PRE 1=1
+rr <-- apply_penalty(cc, dmgp, dlyp)=
+  PRE cc:clients & dmgp:NAT & dlyp:NAT
   THEN
-    IF vv:ran(rents)
-    THEN qq := (query_damage_price() + query_delay_price() + query_price(category(vv))) || rr:= true
-    ELSE qq :: NAT || rr:= false
+    IF (dmgp + dlyp) > 0
+    THEN penalty(cc):=(dmgp + dlyp) || rr:= true
+    ELSE rr:= false
     END
+  END;
+
+qq <-- query_penalty(cc)=
+  PRE 1=1
+  THEN qq := penalty(cc)
   END
 
 END
-
-criar uma operação query_delay_price(cc) para descobrir o valor do delay pra uma categoria
