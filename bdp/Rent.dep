@@ -1,0 +1,11 @@
+file:2c5ebb52495257966c4328bd8ea035f1
+incl:Penalty
+sees:Boolean
+sees:Category
+sees:Time
+sees:Price
+sees:Damage
+sees:ClientsCTX
+sees:VehiclesCTX
+uses:Client
+uses:Vehicle

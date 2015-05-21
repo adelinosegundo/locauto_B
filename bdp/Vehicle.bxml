@@ -1,0 +1,231 @@
+<Machine name='Vehicle' type='abstraction'>
+<Sees>
+<Referenced_Machine>
+<Name>Boolean</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>VehiclesCTX</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>Category</Name>
+</Referenced_Machine>
+</Sees>
+<Abstract_Variables>
+<Id value='vehicles' typref='2857328852'/>
+</Abstract_Variables>
+<Invariant>
+<Exp_Comparison op='&lt;:'>
+<Id value='vehicles' typref='2857328852'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='vehicles' typref='2857328852'/>
+</Variables>
+<Values>
+<EmptySet typref='3817003670'/>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='add_vehicle'>
+<Output_Parameters>
+<Id value='rr' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='vv' typref='1924865647'/>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Unary_Exp op='dom' typref='2857328852'>
+<Id value='category' typref='3334472273'/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op='/:'>
+<Id value='vv' typref='1924865647'/>
+<Id value='vehicles' typref='2857328852'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Id value='vehicles' typref='2857328852'/>
+</Variables>
+<Values>
+<Binary_Exp op='\/' typref='2857328852'>
+<Id value='vehicles' typref='2857328852'/>
+<Nary_Exp op='{' typref='2857328852'>
+<Id value='vv' typref='1924865647'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='remove_vehicle'>
+<Output_Parameters>
+<Id value='rr' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='vv' typref='1924865647'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='vehicles' typref='2857328852'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Id value='vehicles' typref='2857328852'/>
+</Variables>
+<Values>
+<Binary_Exp op='-' typref='2857328852'>
+<Id value='vehicles' typref='2857328852'/>
+<Nary_Exp op='{' typref='2857328852'>
+<Id value='vv' typref='1924865647'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+<Operation name='query_vehicle'>
+<Output_Parameters>
+<Id value='qq' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='vv' typref='1924865647'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='vehicles' typref='2857328852'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='2857328852'>
+<Unary_Exp op='POW'>
+<Id value='VEHICLES_ST'/>
+</Unary_Exp>
+</Type>
+<Type id='3817003670'>
+<Unary_Exp op='POW'>
+<Generic_Type/>
+</Unary_Exp>
+</Type>
+<Type id='1806513362'>
+<Id value='BOOL_RESPONSE'/>
+</Type>
+<Type id='1924865647'>
+<Id value='VEHICLES_ST'/>
+</Type>
+<Type id='3334472273'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='VEHICLES_ST'/>
+<Id value='CATEGORIES_ST'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

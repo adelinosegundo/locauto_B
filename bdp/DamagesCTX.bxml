@@ -1,0 +1,27 @@
+<Machine name='DamagesCTX' type='abstraction'>
+<Sets>
+<Set>
+<Id value='DAMAGES_ST' typref='606834801'/>
+<Enumerated_Values>
+<Id value='light' typref='1024802024'/>
+<Id value='moderate' typref='1024802024'/>
+<Id value='heavy' typref='1024802024'/>
+<Id value='no_damage' typref='1024802024'/>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='606834801'>
+<Unary_Exp op='POW'>
+<Id value='DAMAGES_ST'/>
+</Unary_Exp>
+</Type>
+<Type id='1024802024'>
+<Id value='DAMAGES_ST'/>
+</Type>
+</TypeInfos>
+
+</Machine>

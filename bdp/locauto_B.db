@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="C:\Users\Second\Documents\GitHub\locauto_B\bdp\expand_src" old_decomp_dir="C:\Users\Second\Documents\GitHub\locauto_B\bdp\src">
+        <!-- Definition directory list -->
+        <definition_dir path="C:\Users\Second\Documents\GitHub\old_machines" />
+        <!-- Component file list -->
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Boolean" suffix="mch" user="Second">
+            <component name="Boolean" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="CategoriesCTX" suffix="mch" user="Second">
+            <component name="CategoriesCTX" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Category" suffix="mch" user="Second">
+            <component name="Category" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Client" suffix="mch" user="Second">
+            <component name="Client" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="ClientsCTX" suffix="mch" user="Second">
+            <component name="ClientsCTX" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Damage" suffix="mch" user="Second">
+            <component name="Damage" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="DamagesCTX" suffix="mch" user="Second">
+            <component name="DamagesCTX" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Penalty" suffix="mch" user="Second">
+            <component name="Penalty" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Price" suffix="mch" user="Second">
+            <component name="Price" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Rent" suffix="mch" user="Second">
+            <component name="Rent" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Time" suffix="mch" user="Second">
+            <component name="Time" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="Vehicle" suffix="mch" user="Second">
+            <component name="Vehicle" type="specification" />
+        </component_file>
+        <component_file path="C:\Users\Second\Documents\GitHub\old_machines" name="VehiclesCTX" suffix="mch" user="Second">
+            <component name="VehiclesCTX" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

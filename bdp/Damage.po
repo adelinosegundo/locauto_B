@@ -1,0 +1,31 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(5) & _f(8) & WellDefinedness_fix_damage.2,(_f(14) => _f(16));
+_f(1) & _f(2) & _f(5) & _f(8) & WellDefinedness_fix_damage.1,(_f(14) => _f(15));
+_f(1) & _f(2) & _f(5) & _f(8) & fix_damage.1,(_f(9) & _f(3) => _f(11));
+_f(1) & _f(2) & _f(5) & _f(6) & apply_damage.1,(_f(3) => _f(7));
+_f(1) & _f(2) & Initialisation.1,(_f(3) => _f(4))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..4)*{DAMAGES_ST}): FIN(NATURAL*{DAMAGES_ST}) & not(((1..4)*{DAMAGES_ST}) = {}) & VEHICLES_ST: FIN(INTEGER) & not(VEHICLES_ST = {}) & ((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) & not(((1..2)*{BOOL_RESPONSE}) = {});
+"Invariant is preserved";
+(((VEHICLES_ST * {(4|->DAMAGES_ST)})) : (((VEHICLES_ST) --> (((1..4)*{DAMAGES_ST})))));
+damages : VEHICLES_ST +-> ((1..4)*{DAMAGES_ST}) & dom(damages) = VEHICLES_ST & ((damages) : (((VEHICLES_ST) --> (((1..4)*{DAMAGES_ST})))));
+((dd) : (((1..4)*{DAMAGES_ST}))) & not(dd = (4|->DAMAGES_ST)) & ((vv) : (VEHICLES_ST));
+((((damages) <+ ({((vv) |-> (dd))}))) : (((VEHICLES_ST) --> (((1..4)*{DAMAGES_ST})))));
+((vv) : (VEHICLES_ST));
+not((damages )(vv) = (4|->DAMAGES_ST));
+not(not((damages )(vv) = (4|->DAMAGES_ST)));
+((((damages) <+ ({((vv) |-> ((4|->DAMAGES_ST)))}))) : (((VEHICLES_ST) --> (((1..4)*{DAMAGES_ST})))));
+not(dd = (4|->DAMAGES_ST));
+((dd) : (((1..4)*{DAMAGES_ST})));
+"Well definedness";
+((vv) : (dom(damages)));
+((damages) : (((dom(damages)) +-> (ran(damages)))))
+END
+&
+THEORY EnumerateX IS
+BOOL_RESPONSE == {true,false};
+DAMAGES_ST == {light,moderate,heavy,no_damage}
+END

@@ -1,0 +1,30 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & _f(6) & _f(11) & remove_vehicle.1,(_f(12) & _f(4) => _f(14));
+_f(1) & _f(2) & _f(3) & _f(6) & _f(7) & add_vehicle.1,(_f(8) & _f(4) => _f(10));
+_f(1) & _f(2) & _f(3) & Initialisation.1,(_f(4) => _f(5))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) & not(((1..2)*{BOOL_RESPONSE}) = {}) & VEHICLES_ST: FIN(INTEGER) & not(VEHICLES_ST = {});
+((category) : (((VEHICLES_ST) +-> (CATEGORIES_ST))));
+"Invariant is preserved";
+{} : POW( VEHICLES_ST);
+vehicles : POW( VEHICLES_ST);
+((vv) : (VEHICLES_ST)) & ((vv) : (dom(category)));
+not(vv : vehicles);
+not(not(vv : vehicles));
+((vehicles) \/ ({vv})) : POW( VEHICLES_ST);
+((vv) : (VEHICLES_ST));
+((vv) : (vehicles));
+not(((vv) : (vehicles)));
+(vehicles - {vv}) : POW( VEHICLES_ST);
+((vv) : (VEHICLES_ST)) & ((cc) : (CATEGORIES_ST)) & ((cc) : (dom(price)));
+((vv) : (dom(category)));
+((qq$1) : (CATEGORIES_ST));
+not(((vv) : (dom(category))))
+END
+&
+THEORY EnumerateX IS
+BOOL_RESPONSE == {true,false}
+END

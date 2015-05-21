@@ -1,0 +1,713 @@
+<Proof_Obligations>
+<Define name="B definitions">
+<Nary_Pred op="&amp;" translate="((NAT) = (((0) .. (2147483647)))) &amp; ((INT) = (((-2147483647) .. (2147483647))))">
+<Exp_Comparison op="=" translate="((NAT) = (((0) .. (2147483647))))">
+<Id value="NAT"/>
+<Binary_Exp op="..">
+<Integer_Literal value="0"/>
+<Id value="MAXINT"/>
+</Binary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op="=" translate="((INT) = (((-2147483647) .. (2147483647))))">
+<Id value="INT"/>
+<Binary_Exp op="..">
+<Id value="MININT"/>
+<Id value="MAXINT"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Define>
+<Define name="ctx">
+<Set translate="((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) &amp; not(((1..2)*{BOOL_RESPONSE}) = {})">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Boolean.bxml:1:1:1:1" typref="117719473" value="BOOL_RESPONSE"/>
+<Enumerated_Values>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Boolean.bxml:1:1:1:2:1" typref="1806513362" value="true"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Boolean.bxml:1:1:1:2:2" typref="1806513362" value="false"/>
+</Enumerated_Values>
+</Set>
+<Set translate="VEHICLES_ST: FIN(INTEGER) &amp; not(VEHICLES_ST = {})">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\VehiclesCTX.bxml:1:1:1:1" typref="2857328852" value="VEHICLES_ST"/>
+</Set>
+<Set translate="((1..3)*{CATEGORIES_ST}): FIN(NATURAL*{CATEGORIES_ST}) &amp; not(((1..3)*{CATEGORIES_ST}) = {})">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:1:1:1" typref="450557023" value="CATEGORIES_ST"/>
+<Enumerated_Values>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:1:1:2:1" typref="284568740" value="car"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:1:1:2:2" typref="284568740" value="motocycle"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:1:1:2:3" typref="284568740" value="lux_car"/>
+</Enumerated_Values>
+</Set>
+</Define>
+<Define name="seext">
+<Nary_Pred op="&amp;" translate="((damage_price) : (((DAMAGES_ST) +-> (NAT)))) &amp; ((price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0}))))) &amp; ((delay_price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))))">
+<Exp_Comparison op=":" initialTag="((damage_price) : (((DAMAGES_ST) +-> (NAT))))" translate="((damage_price) : (((DAMAGES_ST) +-> (NAT))))">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:1:1" typref="3162468726" value="damage_price"/>
+<Binary_Exp op="+->" typref="1948516835">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:1:2:1" typref="606834801" value="DAMAGES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:1:2:2" typref="3603043417" value="NAT"/>
+</Binary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op=":" initialTag="((price) : (((CATEGORIES_ST) +-> ((NAT-{0})))))" translate="((price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))))">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:2:1" typref="2821331286" value="price"/>
+<Binary_Exp op="+->" typref="1574097325">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:2:2:1" typref="450557023" value="CATEGORIES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:2:2:2" typref="3603043417" value="NAT1"/>
+</Binary_Exp>
+</Exp_Comparison>
+<Exp_Comparison op=":" initialTag="((delay_price) : (((CATEGORIES_ST) +-> ((NAT-{0})))))" translate="((delay_price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))))">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:3:1" typref="2821331286" value="delay_price"/>
+<Binary_Exp op="+->" typref="1574097325">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:3:2:1" typref="450557023" value="CATEGORIES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:3:1:3:2:2" typref="3603043417" value="NAT1"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Define>
+<Define name="inv">
+<Exp_Comparison op=":" translate="((category) : (((VEHICLES_ST) +-> (((1..3)*{CATEGORIES_ST})))))">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:1" initialTag="category" typref="3334472273" value="category"/>
+<Binary_Exp op="+->" initialTag="((VEHICLES_ST) +-> (CATEGORIES_ST))" typref="2724553586">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:1" typref="2857328852" value="VEHICLES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Define>
+<Define name="ass"/>
+<Define name="lprp"/>
+<Define name="inprp"/>
+<Define name="inext"/>
+<Define name="cst"/>
+<Proof_Obligation>
+<Comment>Initialisation dans une machine abstraite</Comment>
+<Tag>Initialisation</Tag>
+<Tag>Invariant</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" goalTag="Invariant is preserved">
+<EmptySet tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:4:1:2:1,C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:1,C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:4:1:1:1" typref="3334472273"/>
+<Binary_Exp op="+->" initialTag="((VEHICLES_ST) +-> (CATEGORIES_ST))" typref="2724553586">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:1" typref="2857328852" value="VEHICLES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>set_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:1" typref="284568740" value="cc"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:3:1" typref="284568740" value="cc"/>
+<Unary_Exp op="dom" typref="450557023">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:3:2:1" typref="2821331286" value="price"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Invariant is preserved</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":" goalTag="Invariant is preserved">
+<Binary_Exp op="&lt;+" tag=",C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:1,C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:3:1:1:1:1" typref="3334472273">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:3:1:1:1:1" typref="3334472273" value="category"/>
+<Nary_Exp op="{">
+<Binary_Exp op="|->">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:3:1:1:1:2" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:3:1:2:1" typref="284568740" value="cc"/>
+</Binary_Exp>
+</Nary_Exp>
+</Binary_Exp>
+<Binary_Exp op="+->" initialTag="((VEHICLES_ST) +-> (CATEGORIES_ST))" typref="2724553586">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:1" typref="2857328852" value="VEHICLES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:3:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Binary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>query_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:3:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:3:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:1" typref="1924865647" value="vv"/>
+<Unary_Exp op="dom" typref="2857328852">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:2:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="3">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Local_Hyp num="4">
+<Exp_Comparison op=":">
+<Id suffix="1" tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:3:1:1:1:1,C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:3:1:1:1:1,C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:3:1:1:1:1" typref="284568740" value="qq"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:3:1:1:2:1" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="5">
+<Unary_Pred op="not">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:1" typref="1924865647" value="vv"/>
+<Unary_Exp op="dom" typref="2857328852">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:2:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Unary_Pred>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations des machines vues dans une machine abstraite</Comment>
+<Tag>set_damage_price</Tag>
+<Tag>INVARIANT</Tag>
+<Tag>EXTENDED_SEES</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:1:2:1:1:1" typref="1024802024" value="dd"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:1:2:1:1:2" typref="606834801" value="DAMAGES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:1:2:1:2:1" typref="2701647786" value="pp"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:1:2:1:2:2" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations des machines vues dans une machine abstraite</Comment>
+<Tag>query_damage_penalty</Tag>
+<Tag>INVARIANT</Tag>
+<Tag>EXTENDED_SEES</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:2:3:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:2:3:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations des machines vues dans une machine abstraite</Comment>
+<Tag>query_damage_price</Tag>
+<Tag>INVARIANT</Tag>
+<Tag>EXTENDED_SEES</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:3:1:1" typref="1024802024" value="dd"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:3:1:2" typref="606834801" value="DAMAGES_ST"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:1:1:1" typref="1024802024" value="dd"/>
+<Unary_Exp op="dom" typref="606834801">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:1:1:2:1" typref="3162468726" value="damage_price"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="3">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+<Local_Hyp num="4">
+<Exp_Comparison op=":">
+<Id suffix="1" tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:3:1:1:1:1,C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:3:1:1:1:1,C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:3:1:1:1:1" typref="2701647786" value="qq"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:3:1:1:2:1" typref="3603043417" value="NAT"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="5">
+<Unary_Pred op="not">
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:1:1:1" typref="1024802024" value="dd"/>
+<Unary_Exp op="dom" typref="606834801">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:3:4:1:1:1:2:1" typref="3162468726" value="damage_price"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Unary_Pred>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations des machines vues dans une machine abstraite</Comment>
+<Tag>set_price</Tag>
+<Tag>INVARIANT</Tag>
+<Tag>EXTENDED_SEES</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:1:1" typref="284568740" value="cc"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:1:2" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:2:1" typref="2701647786" value="pp"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:2:2" typref="3603043417" value="NAT1"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:3:1" typref="2701647786" value="dly"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:4:2:1:3:2" typref="3603043417" value="NAT1"/>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations des machines vues dans une machine abstraite</Comment>
+<Tag>query_price</Tag>
+<Tag>INVARIANT</Tag>
+<Tag>EXTENDED_SEES</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op=":">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:5:3:1:1" typref="284568740" value="cc"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:5:5:3:1:2" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Nary_Pred op="&amp;"/>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessConstraints</Tag>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessProperties</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Hypothesis/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessInvariant</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessAssertions</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinednessInitialisation</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_Precondition_set_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Local_Hyp num="1">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:1" typref="284568740" value="cc"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+</Local_Hyp>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_set_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Nary_Pred op="&amp;">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:1" typref="284568740" value="cc"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:2:2" typref="450557023" value="CATEGORIES_ST"/>
+</Exp_Comparison>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:3:1" typref="284568740" value="cc"/>
+<Unary_Exp op="dom" typref="450557023">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:1:2:1:3:2:1" typref="2821331286" value="price"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Nary_Pred>
+</Hypothesis>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_Precondition_query_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+</Proof_Obligation>
+<Proof_Obligation>
+<Comment>Operations dans une machine abstraite</Comment>
+<Tag>WellDefinedness_query_category</Tag>
+<Tag>INVARIANT</Tag>
+<Definition name="B definitions"/>
+<Definition name="ctx"/>
+<Definition name="cst"/>
+<Definition name="lprp"/>
+<Definition name="inprp"/>
+<Definition name="inext"/>
+<Definition name="seext"/>
+<Definition name="inv"/>
+<Definition name="ass"/>
+<Hypothesis>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:3:1:1" typref="1924865647" value="vv"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:3:1:2" typref="2857328852" value="VEHICLES_ST"/>
+</Exp_Comparison>
+</Hypothesis>
+<Local_Hyp num="1">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:1" typref="1924865647" value="vv"/>
+<Unary_Exp op="dom" typref="2857328852">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:2:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Local_Hyp>
+<Local_Hyp num="2">
+<Unary_Pred op="not">
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:1" typref="1924865647" value="vv"/>
+<Unary_Exp op="dom" typref="2857328852">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:1:1:2:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+</Exp_Comparison>
+</Unary_Pred>
+</Local_Hyp>
+<Simple_Goal>
+<Tag>Well definedness</Tag>
+<Goal>
+<Binary_Pred op="=>">
+<Ref_Hyp num="1"/>
+<Exp_Comparison op=":">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:2:1:1:2:1:1" typref="3334472273" value="category"/>
+<Binary_Exp op="+->">
+<Unary_Exp op="dom">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:2:1:1:2:1:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+<Unary_Exp op="ran">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:5:2:4:1:2:1:1:2:1:1" typref="3334472273" value="category"/>
+</Unary_Exp>
+</Binary_Exp>
+</Exp_Comparison>
+</Binary_Pred>
+</Goal>
+</Simple_Goal>
+</Proof_Obligation>
+<TypeInfos>
+<Type id="3334472273">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:1:1:1:1" value="VEHICLES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:1:1:1:2" value="CATEGORIES_ST"/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="2724553586">
+<Unary_Exp op="POW">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:2:1:1:1:1" value="VEHICLES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:2:1:1:1:2" value="CATEGORIES_ST"/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="2857328852">
+<Unary_Exp op="POW">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:3:1:1" value="VEHICLES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="450557023">
+<Unary_Exp op="POW">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:4:1:1" value="CATEGORIES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="3817003670">
+<Unary_Exp op="POW">
+<Generic_Type tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:5:1:1"/>
+</Unary_Exp>
+</Type>
+<Type id="1924865647">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:6:1" value="VEHICLES_ST"/>
+</Type>
+<Type id="284568740">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:7:1" value="CATEGORIES_ST"/>
+</Type>
+<Type id="2821331286">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:8:1:1:1" value="CATEGORIES_ST"/>
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:8:1:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="1806513362">
+<Id tag="C:\Users\Second\Documents\GitHub\locauto_B\bdp\Category.bxml:1:6:9:1" value="BOOL_RESPONSE"/>
+</Type>
+<Type id="117719473">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Boolean.bxml:1:3:1:1:1" value="BOOL_RESPONSE"/>
+</Unary_Exp>
+</Type>
+<Type id="1806513362">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Boolean.bxml:1:3:2:1" value="BOOL_RESPONSE"/>
+</Type>
+<Type id="2857328852">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\VehiclesCTX.bxml:1:3:1:1:1" value="VEHICLES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="450557023">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:3:1:1:1" value="CATEGORIES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="284568740">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\CategoriesCTX.bxml:1:3:2:1" value="CATEGORIES_ST"/>
+</Type>
+<Type id="3162468726">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:1:1:1:1" value="DAMAGES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:1:1:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="2821331286">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:2:1:1:1" value="CATEGORIES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:2:1:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="1948516835">
+<Unary_Exp op="POW">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:3:1:1:1:1" value="DAMAGES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:3:1:1:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="606834801">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:4:1:1" value="DAMAGES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="3603043417">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:5:1:1" value="INTEGER"/>
+</Unary_Exp>
+</Type>
+<Type id="1574097325">
+<Unary_Exp op="POW">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:6:1:1:1:1" value="CATEGORIES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:6:1:1:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="450557023">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:7:1:1" value="CATEGORIES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="3291333027">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:8:1:1" value="DAMAGES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:8:1:2" value="INTEGER"/>
+</Binary_Exp>
+</Type>
+<Type id="1024802024">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:9:1" value="DAMAGES_ST"/>
+</Type>
+<Type id="2701647786">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:10:1" value="INTEGER"/>
+</Type>
+<Type id="3817003670">
+<Unary_Exp op="POW">
+<Generic_Type tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:11:1:1"/>
+</Unary_Exp>
+</Type>
+<Type id="1924865647">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:12:1" value="VEHICLES_ST"/>
+</Type>
+<Type id="2857328852">
+<Unary_Exp op="POW">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:13:1:1" value="VEHICLES_ST"/>
+</Unary_Exp>
+</Type>
+<Type id="1948809851">
+<Unary_Exp op="POW">
+<Binary_Exp op="*">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:14:1:1:1" value="VEHICLES_ST"/>
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:14:1:1:2" value="DAMAGES_ST"/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id="1806513362">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:15:1" value="BOOL_RESPONSE"/>
+</Type>
+<Type id="284568740">
+<Id tag="C:/Users/Second/Documents/GitHub/locauto_B/bdp\Price.bxml:1:6:16:1" value="CATEGORIES_ST"/>
+</Type>
+</TypeInfos>
+</Proof_Obligations>

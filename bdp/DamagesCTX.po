@@ -1,0 +1,11 @@
+THEORY ProofList
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..4)*{DAMAGES_ST}): FIN(NATURAL*{DAMAGES_ST}) & not(((1..4)*{DAMAGES_ST}) = {})
+END
+&
+THEORY EnumerateX IS
+DAMAGES_ST == {light,moderate,heavy,no_damage}
+END

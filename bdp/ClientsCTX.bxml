@@ -1,0 +1,18 @@
+<Machine name='ClientsCTX' type='abstraction'>
+<Sets>
+<Set>
+<Id value='CLIENTS_ST' typref='3705976077'/>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='3705976077'>
+<Unary_Exp op='POW'>
+<Id value='CLIENTS_ST'/>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

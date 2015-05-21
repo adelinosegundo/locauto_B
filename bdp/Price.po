@@ -1,0 +1,57 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & _f(9) & _f(21) & WellDefinedness_query_price.2,(_f(27) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(21) & WellDefinedness_query_price.1,(_f(27) => _f(33));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(13) & WellDefinedness_query_damage_price.1,(_f(14) & _f(27) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(12) & WellDefinedness_query_damage_penalty.4,(_f(27) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(12) & WellDefinedness_query_damage_penalty.3,(_f(27) => _f(30));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(12) & WellDefinedness_query_damage_penalty.2,(_f(27) => _f(29));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(12) & WellDefinedness_query_damage_penalty.1,(_f(27) => _f(28));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(17) & set_price.2,(_f(4) & _f(19) => _f(20));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(17) & set_price.1,(_f(4) & _f(7) => _f(18));
+_f(1) & _f(2) & _f(3) & _f(9) & _f(10) & set_damage_price.1,(_f(4) & _f(5) => _f(11));
+_f(1) & _f(2) & _f(3) & Initialisation.2,(_f(4) & _f(7) => _f(8));
+_f(1) & _f(2) & _f(3) & Initialisation.1,(_f(4) & _f(5) => _f(6))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..3)*{CATEGORIES_ST}): FIN(NATURAL*{CATEGORIES_ST}) & not(((1..3)*{CATEGORIES_ST}) = {}) & ((1..4)*{DAMAGES_ST}): FIN(NATURAL*{DAMAGES_ST}) & not(((1..4)*{DAMAGES_ST}) = {}) & ((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) & not(((1..2)*{BOOL_RESPONSE}) = {}) & VEHICLES_ST: FIN(INTEGER) & not(VEHICLES_ST = {});
+damages : VEHICLES_ST +-> ((1..4)*{DAMAGES_ST}) & dom(damages) = VEHICLES_ST & ((damages) : (((VEHICLES_ST) --> (((1..4)*{DAMAGES_ST})))));
+"Invariant is preserved";
+"Check invariant ((damage_price) : (((DAMAGES_ST) +-> (NAT))))";
+(({(((4|->DAMAGES_ST)) |-> (0))}) : (((((1..4)*{DAMAGES_ST})) +-> (NAT))));
+"Check invariant ((price) : (((CATEGORIES_ST) +-> ((NAT-{0})))))";
+(({}) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))));
+((damage_price) : (((((1..4)*{DAMAGES_ST})) +-> (NAT)))) & ((price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0}))))) & ((delay_price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))));
+((dd) : (((1..4)*{DAMAGES_ST}))) & ((pp) : (NAT));
+((((damage_price) <+ ({((dd) |-> (pp))}))) : (((((1..4)*{DAMAGES_ST})) +-> (NAT))));
+((vv) : (VEHICLES_ST));
+((dd) : (((1..4)*{DAMAGES_ST})));
+((dd) : (dom(damage_price)));
+((qq$1) : (NAT));
+not(((dd) : (dom(damage_price))));
+((cc) : (((1..3)*{CATEGORIES_ST}))) & ((pp) : ((NAT-{0}))) & ((dly) : ((NAT-{0})));
+((((price) <+ ({((cc) |-> (pp))}))) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))));
+"Check invariant ((delay_price) : (((CATEGORIES_ST) +-> ((NAT-{0})))))";
+((((delay_price) <+ ({((cc) |-> (dly))}))) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))));
+((cc) : (((1..3)*{CATEGORIES_ST})));
+((dd) : (((1..4)*{DAMAGES_ST}))) & not(dd = (4|->DAMAGES_ST)) & ((vv) : (VEHICLES_ST));
+not((damages )(vv) = (4|->DAMAGES_ST));
+not(not((damages )(vv) = (4|->DAMAGES_ST)));
+((price) : (((((1..3)*{CATEGORIES_ST})) +-> ((NAT-{0})))));
+((damage_price) : (((((1..4)*{DAMAGES_ST})) +-> (NAT))));
+"Well definedness";
+((vv) : (dom(damages)));
+((damages) : (((dom(damages)) +-> (ran(damages)))));
+(((damages )(vv)) : (dom(damage_price)));
+((damage_price) : (((dom(damage_price)) +-> (ran(damage_price)))));
+((pp) : ((NAT-{0})));
+((cc) : (dom(price)));
+((price) : (((dom(price)) +-> (ran(price)))))
+END
+&
+THEORY EnumerateX IS
+BOOL_RESPONSE == {true,false};
+CATEGORIES_ST == {car,motocycle,lux_car};
+DAMAGES_ST == {light,moderate,heavy,no_damage}
+END

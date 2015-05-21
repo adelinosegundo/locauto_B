@@ -1,0 +1,61 @@
+﻿THEORY BalanceX IS
+  Price,12,0,0,10,0,0,0;
+  Initialisation,2,0,0,2,0,0,0;
+  WellDefinedness_query_damage_penalty,4,0,0,3,0,0,0;
+  WellDefinedness_query_damage_price,1,0,0,1,0,0,0;
+  WellDefinedness_query_price,2,0,0,1,0,0,0;
+  set_damage_price,1,0,0,1,0,0,0;
+  set_price,2,0,0,2,0,0,0
+END
+&
+THEORY ProofState IS
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0)
+END
+&
+THEORY MethodList IS
+  pr;
+  ?;
+  pr;
+  pr;
+  ?;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),(?;0;1;2;3);
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1;2;3);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  PRVersion("svn")(CLT == "V4.0-53996")
+END

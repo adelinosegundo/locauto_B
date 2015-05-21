@@ -1,0 +1,123 @@
+<Machine name='Time' type='abstraction'>
+<Abstract_Variables>
+<Id value='time' typref='2701647786'/>
+</Abstract_Variables>
+<Invariant>
+<Exp_Comparison op=':'>
+<Id value='time' typref='2701647786'/>
+<Id value='NAT' typref='3603043417'/>
+</Exp_Comparison>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='time' typref='2701647786'/>
+</Variables>
+<Values>
+<Integer_Literal value='0' typref='2701647786'/>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='pass_time'>
+<Precondition>
+<Exp_Comparison op='='>
+<Integer_Literal value='1' typref='2701647786'/>
+<Integer_Literal value='1' typref='2701647786'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='time' typref='2701647786'/>
+</Variables>
+<Values>
+<Binary_Exp op='+' typref='2701647786'>
+<Id value='time' typref='2701647786'/>
+<Integer_Literal value='1' typref='2701647786'/>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='query_time'>
+<Output_Parameters>
+<Id value='qq' typref='2701647786'/>
+</Output_Parameters>
+<Precondition>
+<Exp_Comparison op='='>
+<Integer_Literal value='1' typref='2701647786'/>
+<Integer_Literal value='1' typref='2701647786'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='2701647786'/>
+</Variables>
+<Values>
+<Id value='time' typref='2701647786'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='query_delay'>
+<Output_Parameters>
+<Id value='qq' typref='2701647786'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='tt' typref='2701647786'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='tt' typref='2701647786'/>
+<Id value='NAT' typref='3603043417'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op='&gt;'>
+<Id value='tt' typref='2701647786'/>
+<Id value='time' typref='2701647786'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='2701647786'/>
+</Variables>
+<Values>
+<Integer_Literal value='0' typref='2701647786'/>
+</Values>
+</Assignement_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='qq' typref='2701647786'/>
+</Variables>
+<Values>
+<Binary_Exp op='-' typref='2701647786'>
+<Id value='tt' typref='2701647786'/>
+<Id value='time' typref='2701647786'/>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='2701647786'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='3603043417'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+
+</Machine>

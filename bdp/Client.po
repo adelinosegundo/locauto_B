@@ -1,0 +1,24 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(5) & _f(6) & remove_client.1,(_f(10) & _f(3) => _f(12));
+_f(1) & _f(2) & _f(5) & _f(6) & add_client.1,(_f(7) & _f(3) => _f(9));
+_f(1) & _f(2) & Initialisation.1,(_f(3) => _f(4))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) & not(((1..2)*{BOOL_RESPONSE}) = {}) & CLIENTS_ST: FIN(INTEGER) & not(CLIENTS_ST = {});
+"Invariant is preserved";
+{} : POW( CLIENTS_ST);
+clients : POW( CLIENTS_ST);
+((cc) : (CLIENTS_ST));
+not(cc : clients);
+not(not(cc : clients));
+((clients) \/ ({cc})) : POW( CLIENTS_ST);
+((cc) : (clients));
+not(((cc) : (clients)));
+(clients - {cc}) : POW( CLIENTS_ST)
+END
+&
+THEORY EnumerateX IS
+BOOL_RESPONSE == {true,false}
+END

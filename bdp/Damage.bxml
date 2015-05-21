@@ -1,0 +1,177 @@
+<Machine name='Damage' type='abstraction'>
+<Sees>
+<Referenced_Machine>
+<Name>DamagesCTX</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>VehiclesCTX</Name>
+</Referenced_Machine>
+<Referenced_Machine>
+<Name>Boolean</Name>
+</Referenced_Machine>
+</Sees>
+<Abstract_Variables>
+<Id value='damages' typref='1948809851'/>
+</Abstract_Variables>
+<Invariant>
+<Exp_Comparison op=':'>
+<Id value='damages' typref='1948809851'/>
+<Binary_Exp op='--&gt;' typref='336903710'>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+<Id value='DAMAGES_ST' typref='606834801'/>
+</Binary_Exp>
+</Exp_Comparison>
+</Invariant>
+<Initialisation>
+<Assignement_Sub>
+<Variables>
+<Id value='damages' typref='1948809851'/>
+</Variables>
+<Values>
+<Binary_Exp op='*' typref='1948809851'>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+<Nary_Exp op='{' typref='606834801'>
+<Id value='no_damage' typref='1024802024'/>
+</Nary_Exp>
+</Binary_Exp>
+</Values>
+</Assignement_Sub>
+</Initialisation>
+<Operations>
+<Operation name='apply_damage'>
+<Input_Parameters>
+<Id value='dd' typref='1024802024'/>
+<Id value='vv' typref='1924865647'/>
+</Input_Parameters>
+<Precondition>
+<Nary_Pred op='&amp;'>
+<Exp_Comparison op=':'>
+<Id value='dd' typref='1024802024'/>
+<Id value='DAMAGES_ST' typref='606834801'/>
+</Exp_Comparison>
+<Exp_Comparison op='/='>
+<Id value='dd' typref='1024802024'/>
+<Id value='no_damage' typref='1024802024'/>
+</Exp_Comparison>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+</Nary_Pred>
+</Precondition>
+<Body>
+<Assignement_Sub>
+<Variables>
+<Binary_Exp op='(' typref='1024802024'>
+<Id value='damages' typref='1948809851'/>
+<Id value='vv' typref='1924865647'/>
+</Binary_Exp>
+</Variables>
+<Values>
+<Id value='dd' typref='1024802024'/>
+</Values>
+</Assignement_Sub>
+</Body>
+</Operation>
+<Operation name='fix_damage'>
+<Output_Parameters>
+<Id value='rr' typref='1806513362'/>
+</Output_Parameters>
+<Input_Parameters>
+<Id value='vv' typref='1924865647'/>
+</Input_Parameters>
+<Precondition>
+<Exp_Comparison op=':'>
+<Id value='vv' typref='1924865647'/>
+<Id value='VEHICLES_ST' typref='2857328852'/>
+</Exp_Comparison>
+</Precondition>
+<Body>
+<If_Sub elseif='no'>
+<Condition>
+<Exp_Comparison op='/='>
+<Binary_Exp op='(' typref='1024802024'>
+<Id value='damages' typref='1948809851'/>
+<Id value='vv' typref='1924865647'/>
+</Binary_Exp>
+<Id value='no_damage' typref='1024802024'/>
+</Exp_Comparison>
+</Condition>
+<Then>
+<Nary_Sub op='||'>
+<Assignement_Sub>
+<Variables>
+<Binary_Exp op='(' typref='1024802024'>
+<Id value='damages' typref='1948809851'/>
+<Id value='vv' typref='1924865647'/>
+</Binary_Exp>
+</Variables>
+<Values>
+<Id value='no_damage' typref='1024802024'/>
+</Values>
+</Assignement_Sub>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='true' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Nary_Sub>
+</Then>
+<Else>
+<Assignement_Sub>
+<Variables>
+<Id value='rr' typref='1806513362'/>
+</Variables>
+<Values>
+<Id value='false' typref='1806513362'/>
+</Values>
+</Assignement_Sub>
+</Else>
+</If_Sub>
+</Body>
+</Operation>
+</Operations>
+<TypeInfos>
+<Type id='1948809851'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='VEHICLES_ST'/>
+<Id value='DAMAGES_ST'/>
+</Binary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='336903710'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='VEHICLES_ST'/>
+<Id value='DAMAGES_ST'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+<Type id='2857328852'>
+<Unary_Exp op='POW'>
+<Id value='VEHICLES_ST'/>
+</Unary_Exp>
+</Type>
+<Type id='606834801'>
+<Unary_Exp op='POW'>
+<Id value='DAMAGES_ST'/>
+</Unary_Exp>
+</Type>
+<Type id='1024802024'>
+<Id value='DAMAGES_ST'/>
+</Type>
+<Type id='1924865647'>
+<Id value='VEHICLES_ST'/>
+</Type>
+<Type id='1806513362'>
+<Id value='BOOL_RESPONSE'/>
+</Type>
+</TypeInfos>
+
+</Machine>

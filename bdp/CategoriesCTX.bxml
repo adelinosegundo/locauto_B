@@ -1,0 +1,26 @@
+<Machine name='CategoriesCTX' type='abstraction'>
+<Sets>
+<Set>
+<Id value='CATEGORIES_ST' typref='450557023'/>
+<Enumerated_Values>
+<Id value='car' typref='284568740'/>
+<Id value='motocycle' typref='284568740'/>
+<Id value='lux_car' typref='284568740'/>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='450557023'>
+<Unary_Exp op='POW'>
+<Id value='CATEGORIES_ST'/>
+</Unary_Exp>
+</Type>
+<Type id='284568740'>
+<Id value='CATEGORIES_ST'/>
+</Type>
+</TypeInfos>
+
+</Machine>

@@ -1,0 +1,25 @@
+<Machine name='Boolean' type='abstraction'>
+<Sets>
+<Set>
+<Id value='BOOL_RESPONSE' typref='117719473'/>
+<Enumerated_Values>
+<Id value='true' typref='1806513362'/>
+<Id value='false' typref='1806513362'/>
+</Enumerated_Values>
+</Set>
+</Sets>
+<Initialisation>
+<Skip/>
+</Initialisation>
+<TypeInfos>
+<Type id='117719473'>
+<Unary_Exp op='POW'>
+<Id value='BOOL_RESPONSE'/>
+</Unary_Exp>
+</Type>
+<Type id='1806513362'>
+<Id value='BOOL_RESPONSE'/>
+</Type>
+</TypeInfos>
+
+</Machine>

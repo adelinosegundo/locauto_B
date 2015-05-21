@@ -1,0 +1,105 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(37) & WellDefinedness_query_rents.1,(_f(28) & _f(38) & _f(65) => _f(71));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & WellDefinedness_return.4,(_f(28) & _f(27) & _f(65) => _f(71));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & WellDefinedness_return.3,(_f(28) & _f(65) => _f(73));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & WellDefinedness_return.2,(_f(28) & _f(65) => _f(72));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & WellDefinedness_return.1,(_f(28) & _f(65) => _f(71));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(12) & WellDefinedness_rent.2,(_f(13) & _f(14) & _f(15) & _f(16) & _f(65) => _f(67));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(12) & WellDefinedness_rent.1,(_f(13) & _f(14) & _f(15) & _f(16) & _f(65) => _f(66));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.12,(_f(28) & _f(27) & _f(26) & _f(6) & _f(9) => _f(36));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.11,(_f(28) & _f(27) & _f(26) & _f(6) & _f(7) => _f(33));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.10,(_f(28) & _f(27) & _f(25) & _f(6) & _f(9) => _f(36));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.9,(_f(28) & _f(27) & _f(25) & _f(6) & _f(7) => _f(33));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.8,(_f(28) & _f(27) & _f(30) => _f(35));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.7,(_f(28) & _f(27) & _f(30) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.6,(_f(28) & _f(24) & _f(23) & _f(6) & _f(9) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.5,(_f(28) & _f(24) & _f(23) & _f(6) & _f(7) => _f(33));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.4,(_f(28) & _f(24) & _f(22) & _f(6) & _f(9) => _f(34));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.3,(_f(28) & _f(24) & _f(22) & _f(6) & _f(7) => _f(33));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.2,(_f(28) & _f(24) & _f(30) => _f(32));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(21) & return.1,(_f(28) & _f(24) & _f(30) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(12) & rent.2,(_f(13) & _f(14) & _f(15) & _f(16) & _f(17) & _f(6) & _f(9) => _f(20));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(11) & _f(12) & rent.1,(_f(13) & _f(14) & _f(15) & _f(16) & _f(17) & _f(6) & _f(7) => _f(19));
+_f(1) & _f(2) & _f(3) & _f(4) & Initialisation.2,(_f(5) & _f(6) & _f(9) => _f(10));
+_f(1) & _f(2) & _f(3) & _f(4) & Initialisation.1,(_f(5) & _f(6) & _f(7) => _f(8))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..2)*{BOOL_RESPONSE}): FIN(NATURAL*{BOOL_RESPONSE}) & not(((1..2)*{BOOL_RESPONSE}) = {}) & CLIENTS_ST: FIN(INTEGER) & not(CLIENTS_ST = {}) & VEHICLES_ST: FIN(INTEGER) & not(VEHICLES_ST = {});
+((penalty) : (((CLIENTS_ST) +-> (NAT))));
+((category) : (((VEHICLES_ST) +-> (CATEGORIES_ST)))) & ((time) : (NAT)) & ((damage_price) : (((DAMAGES_ST) +-> (NAT)))) & ((price) : (((CATEGORIES_ST) +-> ((NAT-{0}))))) & ((delay_price) : (((CATEGORIES_ST) +-> ((NAT-{0}))))) & damages : VEHICLES_ST +-> DAMAGES_ST & dom(damages) = VEHICLES_ST & ((damages) : (((VEHICLES_ST) --> (DAMAGES_ST))));
+(((CLIENTS_ST * {0})) : (((CLIENTS_ST) +-> (NAT))));
+"Invariant is preserved";
+"Check invariant ((rents) : (((clients) >+> (vehicles))))";
+(({}) : (((clients) >+> (vehicles))));
+"Check invariant ((return_date) : (((ran(rents)) --> ((NAT-{0})))))";
+(({}) : (((ran({})) --> ((NAT-{0})))));
+rents : clients +-> vehicles & rents~ : vehicles +-> clients & ((rents) : (((clients) >+> (vehicles)))) & return_date : ran(rents) +-> (NAT-{0}) & dom(return_date) = ran(rents) & ((return_date) : (((ran(rents)) --> ((NAT-{0})))));
+((vv) : (VEHICLES_ST)) & ((cc) : (CLIENTS_ST)) & ((rd) : ((NAT-{0}))) & (time +1 <= rd);
+((vv) : (vehicles));
+((cc) : (clients));
+not(cc : dom(rents));
+not(vv : ran(rents));
+(((penalty )(cc)) = (0));
+not(((vv) : (vehicles)) & ((cc) : (clients)) & not(cc : dom(rents)) & not(vv : ran(rents)) & (((penalty )(cc)) = (0)));
+((((rents) <+ ({((cc) |-> (vv))}))) : (((clients) >+> (vehicles))));
+((((return_date) <+ ({((vv) |-> (rd))}))) : (((ran(((rents) <+ ({((cc) |-> (vv))})))) --> ((NAT-{0})))));
+((cc) : (CLIENTS_ST));
+(0 +1 <= ((damage_price )((damages )((rents )(cc))) + (time - ((return_date )((rents )(cc)) * (delay_price )((category )((rents )(cc)))))));
+not((0 +1 <= ((damage_price )((damages )((rents )(cc))) + (time - ((return_date )((rents )(cc)) * (delay_price )((category )((rents )(cc))))))));
+((return_date )((rents )(cc)) +1 <= time);
+(0 +1 <= ((damage_price )((damages )((rents )(cc))) + 0));
+not((0 +1 <= ((damage_price )((damages )((rents )(cc))) + 0)));
+not(((return_date )((rents )(cc)) +1 <= time));
+((cc) : (dom(rents)));
+not(((cc) : (dom(rents))));
+"Precondition predicate";
+(((damage_price )((damages )((rents )(cc)))) : (NAT));
+(((time - ((return_date )((rents )(cc)) * (delay_price )((category )((rents )(cc)))))) : (NAT));
+(((({cc}) <<| (rents))) : (((clients) >+> (vehicles))));
+(((({}) <<| (return_date))) : (((ran((({cc}) <<| (rents)))) --> ((NAT-{0})))));
+((0) : (NAT));
+(((({(rents )(cc)}) <<| (return_date))) : (((ran((({cc}) <<| (rents)))) --> ((NAT-{0})))));
+((cc) : (CLIENTS_ST)) & ((vv) : (VEHICLES_ST));
+((vv) : (ran(rents)));
+(((rents )(cc)) = (vv));
+not(((cc) : (dom(rents))) & ((vv) : (ran(rents))) & (((rents )(cc)) = (vv)));
+((vv) : (VEHICLES_ST));
+not(((vv) : (ran(rents))));
+((vv) : (VEHICLES_ST)) & ((cc) : (CATEGORIES_ST)) & ((cc) : (dom(price)));
+((vv) : (dom(category)));
+((qq$1) : (CATEGORIES_ST));
+not(((vv) : (dom(category))));
+((1) = (1));
+((tt) : (NAT));
+(time +1 <= tt);
+not((time +1 <= tt));
+((dd) : (DAMAGES_ST)) & ((pp) : (NAT));
+((dd) : (DAMAGES_ST));
+((dd) : (dom(damage_price)));
+((qq$1) : (NAT));
+not(((dd) : (dom(damage_price))));
+((cc) : (CATEGORIES_ST)) & ((pp) : ((NAT-{0}))) & ((dly) : ((NAT-{0})));
+((cc) : (CATEGORIES_ST));
+((dd) : (DAMAGES_ST)) & not(dd = no_damage) & ((vv) : (VEHICLES_ST));
+not((damages )(vv) = no_damage);
+not(not((damages )(vv) = no_damage));
+rents : clients +-> vehicles;
+rents~ : vehicles +-> clients;
+((rents) : (((clients) >+> (vehicles))));
+((rd) : ((NAT-{0})));
+"Well definedness";
+((cc) : (dom(penalty)));
+((penalty) : (((dom(penalty)) +-> (ran(penalty)))));
+((dmgp) : (NAT));
+(0 +1 <= (dmgp + dlyp));
+not((0 +1 <= (dmgp + dlyp)));
+((rents) : (((dom(rents)) +-> (ran(rents)))));
+(((rents )(cc)) : (dom(return_date)));
+((return_date) : (((dom(return_date)) +-> (ran(return_date)))))
+END
+&
+THEORY EnumerateX IS
+BOOL_RESPONSE == {true,false}
+END
