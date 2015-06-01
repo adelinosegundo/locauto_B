@@ -1,8 +1,6 @@
-﻿MACHINE           Rent
-
-INCLUDES          Penalty
-
-USES              Client , Vehicle
+MACHINE           Rent 
+    
+EXTENDS           Penalty, Client, Vehicle
 
 SEES              Boolean , Category , Time , Price , Damage , ClientsCTX , VehiclesCTX
 
@@ -31,8 +29,8 @@ rr , rp <-- return ( cc ) =
         IF return_date ( rents ( cc ) ) < time
         THEN
             rents := { cc } <<| rents ||
-            return_date := {} <<| return_date ||
-            rp <-- apply_penalty ( cc , damage_price ( damages ( rents ( cc ) ) ) , ( time - return_date ( rents ( cc ) ) * delay_price ( category ( rents ( cc ) ) ) ) ) ||
+            return_date := {rents(cc)} <<| return_date ||
+            rp <-- apply_penalty(cc, damage_price(damages(rents(cc))), (time-return_date(rents(cc)))*delay_price( category(rents( cc))) ) ||
             rr := true
         ELSE
             rents := { cc } <<| rents ||

@@ -1,4 +1,4 @@
-﻿MACHINE           Damage
+MACHINE           Damage
 
 SEES              DamagesCTX , VehiclesCTX , Boolean
 

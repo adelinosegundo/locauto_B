@@ -1,0 +1,315 @@
+IMPLEMENTATION
+   Locauto_i
+REFINES
+   Locauto
+   
+VALUES
+    VEHICLES_ST = 0..10;
+    CLIENTS_ST = 0..10
+    
+CONCRETE_VARIABLES
+    //Sub sets
+    clients_i,
+    vehicles_i,
+    
+    //Functions
+    category_i,
+    rents_i,
+    return_date_i,
+    damage_price_i,
+    damages_i,
+    delay_price_i,
+    penalty_i,
+    price_i,
+    
+    //Variables
+    time_i
+INVARIANT
+    clients_i: CLIENTS_ST --> BOOL &
+	 clients = CLIENTS_ST /\ (clients_i~)[{TRUE}] &
+    
+    vehicles_i: VEHICLES_ST --> BOOL &
+    vehicles = VEHICLES_ST/\ (vehicles_i~)[{TRUE}] &
+    
+    rents_i:VEHICLES_ST --> {-1} \/ CLIENTS_ST &
+    rents = rents_i |> {-1} &
+    
+    return_date_i: ran(rents_i |> {-1}) --> NAT1 &
+    return_date = return_date_i &
+    
+    damage_price_i: DAMAGES_ST --> NAT &
+    damage_price_i = damage_price &
+    
+    damages_i: VEHICLES_ST --> DAMAGES_ST &
+    damages = damages_i &
+    
+    delay_price_i: CATEGORIES_ST --> NAT1 &
+    delay_price = delay_price_i &
+    
+    penalty_i: CLIENTS_ST --> NAT &
+    penalty = penalty_i &
+    
+    category_i : VEHICLES_ST --> CATEGORIES_ST &
+    category = category_i &
+    
+    price_i : CATEGORIES_ST --> NAT1 &
+    price = price_i &
+        
+    time_i : NAT &
+    time = time_i
+    
+INITIALISATION
+    clients_i := CLIENTS_ST * {FALSE};
+    vehicles_i := VEHICLES_ST * {FALSE};
+    rents_i := VEHICLES_ST*{-1};
+    return_date_i := {};
+    damage_price_i := DAMAGES_ST*{0};
+    damages_i := VEHICLES_ST*{no_damage};
+    delay_price_i := CATEGORIES_ST*{1};
+    price_i := CATEGORIES_ST*{1};
+    category_i := VEHICLES_ST*{no_category};
+    penalty_i := CLIENTS_ST*{0};
+    time_i := 0
+
+OPERATIONS
+    
+    rr , rp <-- return(cc)=
+      BEGIN
+        IF cc : CLIENTS_ST & cc:ran(rents_i)
+        THEN
+            VAR delay, dlyp, dmgp  IN
+                delay := time_i-return_date_i(rents_i~(cc));
+                dmgp := damage_price_i(damages_i(rents_i~(cc)));
+                IF delay > 0
+                THEN
+                    dlyp := delay*delay_price_i( category_i(rents_i~(cc)));
+                    penalty_i(cc) := dmgp + dlyp;
+                    rp := true
+                ELSE
+                    dlyp := 0;
+                    IF dmgp + dlyp > 0
+                    THEN 
+                        penalty_i(cc) := dmgp + dlyp;
+                        rp := true
+                    ELSE
+                        rp := false
+                    END
+                END
+            END;
+            rents_i := {rents_i~(cc)} <<| rents_i;
+            return_date_i := {rents_i~(cc)} <<| return_date_i;
+            rr := true    
+        ELSE 
+            rr := false;
+            rp := false
+        END
+      END;
+    
+    rr <-- apply_penalty(cc, dmgp, dlyp)=
+      BEGIN 
+        IF cc : CLIENTS_ST & dmgp : NAT & dlyp : NAT & ( dmgp + dlyp ) > 0
+        THEN 
+            penalty_i(cc) := dmgp + dlyp; 
+            rr := true
+        ELSE 
+            rr := false
+        END
+      END;
+    
+    qq <-- query_penalty(cc)=
+      BEGIN
+          qq := penalty_i(cc)
+      END;
+    
+    rr <-- rent(cc, vv, rd)= 
+        BEGIN
+           IF vv : VEHICLES_ST & cc : CLIENTS_ST & rd : NAT1 & rd > time_i
+           THEN rents_i(cc) := vv; rr := true
+           ELSE rr := false
+           END
+        END;
+      
+    qq <-- query_rents ( cc , vv ) =
+      BEGIN
+        IF cc : CLIENTS_ST & vv : VEHICLES_ST & cc : ran(rents_i) & rents_i(vv) = cc
+        THEN qq := true
+        ELSE qq := false
+        END
+      END;
+
+    qq <-- query_rented ( vv ) =
+      BEGIN
+        IF vv : VEHICLES_ST & rents_i(vv) /= -1
+        THEN qq := true
+        ELSE qq := false
+        END
+      END;
+
+    qq <-- query_renter(cc)=
+      BEGIN
+        IF cc : CLIENTS_ST & cc:ran(rents_i)
+        THEN qq := true
+        ELSE qq := false
+        END
+      END;
+      
+    rr <-- add_client(cc) =
+      BEGIN
+        IF cc : CLIENTS_ST & clients_i(cc) = FALSE
+        THEN 
+            clients_i(cc) := TRUE;
+            rr := true
+        ELSE 
+            rr := false
+        END
+      END;
+
+    rr <-- remove_client ( cc ) =
+      BEGIN
+        IF cc : CLIENTS_ST & clients_i(cc) = TRUE
+        THEN 
+            clients_i(cc) := FALSE;
+            rr := true
+        ELSE 
+            rr := false
+        END
+      END;
+
+    pp <-- query_client ( cc ) =
+      BEGIN 
+        IF cc:CLIENTS_ST & clients_i(cc) = TRUE
+        THEN pp := true
+        ELSE pp := false
+        END
+      END;
+      
+
+	rr <-- add_vehicle ( vv ) =
+	  BEGIN
+	    IF vv : VEHICLES_ST & category_i(vv)/=no_category & vehicles_i(vv) = FALSE
+	    THEN 
+	    	vehicles_i(vv) := TRUE;
+	    	rr := true
+	    ELSE 
+	    	rr := false
+	    END
+	  END;
+
+	rr <-- remove_vehicle ( vv ) =
+	  BEGIN
+	    IF vv : VEHICLES_ST & vehicles_i(vv) = TRUE
+	    THEN 
+	    	vehicles_i(vv) := FALSE;
+	    	rr := true
+	    ELSE rr := false
+	    END
+	  END;
+
+	qq <-- query_vehicle ( vv ) =
+	  BEGIN
+	    IF vv : VEHICLES_ST & vehicles_i(vv) = TRUE
+	    THEN qq := true
+	    ELSE qq := false
+	    END
+	  END;
+	  
+	set_category (vv, cc) =
+     BEGIN
+       IF vv:VEHICLES_ST & cc:CATEGORIES_ST
+       THEN category_i(vv) := cc
+       END
+     END;
+
+   qq, rr <-- query_category(vv)=
+      BEGIN
+        IF vv : VEHICLES_ST & category_i(vv) /= no_category
+        THEN 
+            qq := category_i(vv);
+            rr := true
+        ELSE
+            qq := category_i(vv);
+            rr := false
+        END
+      END;
+      
+   apply_damage(dd, vv) =
+      BEGIN
+        IF dd : DAMAGES_ST & dd /= no_damage & vv : VEHICLES_ST
+        THEN damages_i(vv) := dd
+        END
+      END;
+    
+   rr <-- fix_damage (vv) =
+      BEGIN
+        IF vv : VEHICLES_ST & damages_i(vv) /= no_damage
+        THEN 
+            damages_i(vv) := no_damage;
+            rr := true
+        ELSE 
+            rr := false
+        END
+      END;
+      
+   set_damage_price(dd, pp)=
+      BEGIN
+          IF dd : DAMAGES_ST & pp : NAT
+          THEN damage_price_i(dd) := pp
+          END
+      END;
+    
+   qq <-- query_damage_penalty(vv) =
+      BEGIN
+          IF vv : VEHICLES_ST
+          THEN qq := damage_price_i(damages_i(vv))
+          ELSE qq := 0
+          END
+      END ;
+    
+   qq , rr <-- query_damage_price(dd) =
+      BEGIN
+        IF dd : DAMAGES_ST & dd : dom(damage_price_i)
+        THEN 
+            qq := damage_price_i(dd);
+            rr := true
+        ELSE 
+            qq := damage_price_i(dd);
+            rr := false
+        END
+      END ;
+    
+   set_price ( cc , pp , dly ) =
+      BEGIN
+          IF cc : CATEGORIES_ST & pp : NAT1 & dly : NAT1
+          THEN 
+              price_i ( cc ) := pp;
+              delay_price_i ( cc ) := dly
+          END
+      END;
+    
+   pp <-- query_price ( cc ) =
+      BEGIN 
+          IF cc : CATEGORIES_ST 
+          THEN pp := price_i(cc)
+          ELSE pp := 0
+          END 
+      END;
+      
+   pass_time =
+      BEGIN
+             time_i:= time_i + 1
+      END ;
+    
+   qq <-- query_time =
+      BEGIN
+          qq := time_i
+      END ;
+    
+   qq <-- query_delay(tt) =
+      BEGIN
+        IF tt : NAT & tt > time_i
+        THEN qq := 0
+        ELSE qq := tt - time_i
+        END
+      END
+   
+END

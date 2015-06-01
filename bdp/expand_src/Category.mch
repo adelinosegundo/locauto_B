@@ -1,12 +1,12 @@
-﻿MACHINE           Category
+MACHINE           Category
 
 SEES              Boolean , VehiclesCTX , CategoriesCTX , Price
 
 ABSTRACT_VARIABLES category
 
-INVARIANT         category : VEHICLES_ST +-> CATEGORIES_ST
+INVARIANT         category : VEHICLES_ST --> CATEGORIES_ST
 
-INITIALISATION    category := {}
+INITIALISATION    category := VEHICLES_ST*{no_category}
 
 OPERATIONS
 

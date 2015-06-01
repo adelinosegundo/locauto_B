@@ -1,5 +1,5 @@
-﻿MACHINE           CategoriesCTX
+MACHINE           CategoriesCTX
 
-SETS              CATEGORIES_ST = { car , motocycle , lux_car }
+SETS              CATEGORIES_ST = {no_category, car , motocycle , lux_car }
 
 END

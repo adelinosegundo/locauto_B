@@ -1,12 +1,12 @@
-﻿MACHINE           Price
+MACHINE           Price
 
 SEES              CategoriesCTX , DamagesCTX , Damage , Boolean , VehiclesCTX
 
 ABSTRACT_VARIABLES damage_price , price , delay_price
 
-INVARIANT         damage_price : DAMAGES_ST +-> NAT & price : CATEGORIES_ST +-> NAT1 & delay_price : CATEGORIES_ST +-> NAT1
+INVARIANT         damage_price : DAMAGES_ST --> NAT & price : CATEGORIES_ST --> NAT1 & delay_price : CATEGORIES_ST --> NAT1
 
-INITIALISATION    damage_price , price , delay_price := { no_damage |-> 0 } , {} , {}
+INITIALISATION    damage_price , price , delay_price := DAMAGES_ST*{0} , CATEGORIES_ST*{1} , CATEGORIES_ST*{1}
 
 OPERATIONS
 

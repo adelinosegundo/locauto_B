@@ -1,6 +1,6 @@
-﻿MACHINE           Vehicle
+MACHINE           Vehicle
 
-SEES              Boolean , VehiclesCTX , Category
+SEES              Boolean , VehiclesCTX , Category, CategoriesCTX
 
 ABSTRACT_VARIABLES vehicles
 
@@ -11,7 +11,7 @@ INITIALISATION    vehicles := {}
 OPERATIONS
 
 rr <-- add_vehicle ( vv ) =
-  PRE vv : VEHICLES_ST & vv : dom ( category )
+  PRE vv : VEHICLES_ST & category(vv)/=no_category
   THEN
     IF vv /: vehicles
     THEN vehicles := vehicles \/ { vv } || rr := true
@@ -36,5 +36,6 @@ qq <-- query_vehicle ( vv ) =
     ELSE qq := false
     END
   END
+
 
 END

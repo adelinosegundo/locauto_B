@@ -1,10 +1,10 @@
-﻿MACHINE           Penalty
+MACHINE           Penalty
 
 SEES              Boolean , ClientsCTX
 
 ABSTRACT_VARIABLES penalty
 
-INVARIANT         penalty : CLIENTS_ST +-> NAT
+INVARIANT         penalty : CLIENTS_ST --> NAT
 
 INITIALISATION    penalty := CLIENTS_ST * { 0 }
 
